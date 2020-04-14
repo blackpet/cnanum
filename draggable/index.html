@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@Shopify/draggable</title>
+
+    <style>
+
+        .container2 .item { height: 100%; }
+        .container2 .dropzone2 { outline: solid 1px; height: 50px; }
+        .container2 .draggable-dropzone--occupied { background: lightgreen; }
+
+        .target .sortable {min-height: 20px; border:1px solid red;}
+    </style>
+</head>
+<body>
+
+<h1>@Shopify/draggable</h1>
+
+<p><a href="https://github.com/Shopify/draggable">Github</a></p>
+
+<h2>Droppable</h2>
+<div>
+    <div class="container2">
+        <div class="dropzone2 draggable-dropzone--occupied">
+            <div class="item">A</div>
+        </div>
+        <div class="dropzone2 draggable-dropzone--occupied">
+            <div class="item">B</div>
+        </div>
+        <div class="dropzone2 draggable-dropzone--occupied">
+            <div class="item">C</div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="container2">
+        <div class="dropzone2"></div>
+    </div>
+</div>
+
+<h2>Multiple containers Sortable</h2>
+
+<ul class="target">
+    <li data-dutycd="1">HRD 직무 1<ul class="sortable"></ul></li>
+    <li data-dutycd="2">HRD 직무 2<ul class="sortable"></ul></li>
+    <li data-dutycd="3">HRD 직무 3<ul class="sortable"></ul></li>
+</ul>
+
+<ul class="source sortable">
+    <li class="draggable" data-item="aa">Item 1</li>
+    <li class="draggable" data-item="bb">Item 2</li>
+    <li class="draggable">Item 3</li>
+    <li class="draggable">Item 4</li>
+    <li class="draggable">Item 5</li>
+</ul>
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<!-- legacy bundle for older browsers (IE11) -->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.6/lib/draggable.bundle.legacy.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/sortable.js"></script>
+<!-- Draggable only -->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.6/lib/draggable.js"></script>-->
+<!-- Droppable only -->
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/droppable.js"></script>
+<script>
+
+  (function () {
+    // Droppable
+    var droppable2 = new Droppable.default(document.querySelectorAll('.container2'), {
+      draggable: '.item',
+      dropzone: '.dropzone2'
+    });
+
+    droppable2.on('droppable:dropped', () => console.log('droppable:dropped'));
+    droppable2.on('droppable:returned', () => console.log('droppable:returned'));
+
+    // Sortable (Multi containers)
+    var sortable = new Sortable.default(document.querySelectorAll('.sortable'), {
+      draggable: '.draggable',
+      mirror: {
+        constrainDimensions: true
+      }
+    });
+
+    sortable.on('drag:start', (e) => {
+      console.log('drag:start', e);
+    });
+    sortable.on('drag:stop', (e) => {
+      console.log('drag:stop', e.source.parentNode.parentNode.dataset, e);
+    });
+    sortable.on('sortable:sort', (e) => {
+      console.log('sortable:sort', e);
+    });
+    sortable.on('sortable:sorted', (e) => {
+      console.log('sortable:sorted', e);
+    });
+
+  })();
+</script>
+
+</body>
+</html>
