@@ -5,12 +5,29 @@ module.exports = (env, options) => {
 
     entry: {
       app: ['./src/app.js'],
+      draggable: ['@babel/polyfill', './src/draggable.js']
     },
 
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist')
     },
+
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-transform-arrow-functions']
+            }
+          }
+
+        }
+      ]
+    }
   };
 
   if (options.mode === 'development') {
