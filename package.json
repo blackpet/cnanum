@@ -1,0 +1,42 @@
+{
+  "name": "cnanum",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://blackpet.github.io/cnanum/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --option --mode development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackpet/cnanum.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blackpet/cnanum/issues"
+  },
+  "homepage": "https://github.com/blackpet/cnanum#readme",
+  "dependencies": {
+    "@shopify/draggable": "^1.0.0-beta.8",
+    "jsrender": "^1.0.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-arrow-functions": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
+    "gh-pages": "^2.2.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

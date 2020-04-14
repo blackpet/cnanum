@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@Shopify/draggable</title>
+
+    <style>
+
+        .container2 .item { height: 100%; }
+        .container2 .dropzone2 { outline: solid 1px; height: 50px; }
+        .container2 .draggable-dropzone--occupied { background: lightgreen; }
+
+        .target .sortable {min-height: 20px; border:1px solid red;}
+    </style>
+</head>
+<body>
+
+<h1>@Shopify/draggable</h1>
+
+<p><a href="https://github.com/Shopify/draggable">Github</a></p>
+
+<h2>Droppable</h2>
+<div>
+    <div class="container2">
+        <div class="dropzone2 draggable-dropzone--occupied">
+            <div class="item">A</div>
+        </div>
+        <div class="dropzone2 draggable-dropzone--occupied">
+            <div class="item">B</div>
+        </div>
+        <div class="dropzone2 draggable-dropzone--occupied">
+            <div class="item">C</div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="container2">
+        <div class="dropzone2"></div>
+    </div>
+</div>
+
+<h2>Multiple containers Sortable</h2>
+
+<ul class="target">
+    <li data-dutycd="1">HRD 직무 1<ul class="sortable"></ul></li>
+    <li data-dutycd="2">HRD 직무 2<ul class="sortable"></ul></li>
+    <li data-dutycd="3">HRD 직무 3<ul class="sortable"></ul></li>
+</ul>
+
+<ul class="source sortable">
+    <li class="draggable" data-item="aa">Item 1</li>
+    <li class="draggable" data-item="bb">Item 2</li>
+    <li class="draggable">Item 3</li>
+    <li class="draggable">Item 4</li>
+    <li class="draggable">Item 5</li>
+</ul>
+
+<script src="/dist/draggable.bundle.js"></script>
+
+</body>
+</html>
