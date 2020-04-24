@@ -2,7 +2,7 @@
   "name": "cnanum",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://blackpet.github.io/cnanum/",
+  "homepage": "https://github.com/blackpet/cnanum#readme",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,10 +22,11 @@
   "bugs": {
     "url": "https://github.com/blackpet/cnanum/issues"
   },
-  "homepage": "https://github.com/blackpet/cnanum#readme",
   "dependencies": {
     "@shopify/draggable": "^1.0.0-beta.8",
-    "jsrender": "^1.0.6"
+    "jquery": "^3.5.0",
+    "jsrender": "^1.0.6",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

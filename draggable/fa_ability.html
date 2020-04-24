@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nongshim Edu-HR Job Mapping Test</title>
+
+    <style type="text/css">
+        .drag-target .sortable {min-height: 20px; border:1px solid red;}
+        .disconnect-btn {display: none;}
+        #eduJobList .disconnect-btn {display: block;}
+    </style>
+</head>
+<body>
+
+
+<div>
+    <h4>
+        <label>교육직무</label>
+    </h4>
+
+    <div>
+        신규 교육직무:
+        <input type="text" id="newEduJob">
+        <button id="newEduJobBtn">등록</button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>삭제</th>
+            <th>코드</th>
+            <th>교육직무</th>
+            <th>인사직무</th>
+        </tr>
+        </thead>
+
+        <tbody id="eduJobList" class="drag-target">
+        <tr data-edu-jikclass="1">
+            <td>
+                <button class="edu-job-delete-btn">삭제</button>
+            </td>
+            <td>1</td>
+            <td>해외영업</td>
+            <td>
+                <ul class="sortable"></ul>
+            </td>
+        </tr>
+        <tr data-edu-jikclass="2">
+            <td>
+                <button class="edu-job-delete-btn">삭제</button>
+            </td>
+            <td>2</td>
+            <td>국내유통</td>
+            <td>
+                <ul class="sortable"></ul>
+            </td>
+        </tr>
+        <tr data-edu-jikclass="3">
+            <td>
+                <button class="edu-job-delete-btn">삭제</button>
+            </td>
+            <td>3</td>
+            <td>마케팅</td>
+            <td>
+                <ul class="sortable"></ul>
+            </td>
+        </tr>
+        <tr data-edu-jikclass="4">
+            <td>
+                <button class="edu-job-delete-btn">삭제</button>
+            </td>
+            <td>4</td>
+            <td>홍보</td>
+            <td>
+                <ul class="sortable"></ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+<div class="btn_v" style="padding-top:150px">
+    <a href="#" id="moveRight" class="btn_right">right</a>
+    <a href="#" id="moveLeft" class="btn_left">left</a>
+    <span class="dotted"></span>
+    <a href="#" id="moveRightAll" class="btn_right2">right</a>
+    <a href="#" id="moveLeftAll" class="btn_left2">left</a>
+</div>
+
+<div>
+    <div>매핑할 인사 직무를 드래그하여 교육직무 옆 인사직무 영역에 놓아 주세요</div>
+    <h4>
+        <label>인사직무</label>
+    </h4>
+
+    <ul class="sortable">
+        <li class="draggable" data-comp="N" data-hr-jikclass="1">인사직무1 <button class="disconnect-btn">X</button></li>
+        <li class="draggable" data-comp="N" data-hr-jikclass="2">인사직무2 <button class="disconnect-btn">X</button></li>
+        <li class="draggable" data-comp="N" data-hr-jikclass="3">인사직무3 <button class="disconnect-btn">X</button></li>
+        <li class="draggable" data-comp="N" data-hr-jikclass="4">인사직무4 <button class="disconnect-btn">X</button></li>
+        <li class="draggable" data-comp="N" data-hr-jikclass="5">인사직무5 <button class="disconnect-btn">X</button></li>
+    </ul>
+
+</div>
+</div>
+
+<!-- 교육직무 template -->
+<script type="text/html" id="eduJobTmpl">
+    <tr data-edu-jikclass="{{:eduJikclass}}">
+        <td>
+            <button class="edu-job-delete-btn">삭제</button>
+        </td>
+        <td>{{:eduJikclass}}</td>
+        <td>{{>eduClassnm}}</td>
+        <td>
+            <ul class="sortable"></ul>
+        </td>
+    </tr>
+</script>
+<!-- // 교육직무 template -->
+
+<!-- 인사직무 template -->
+<script type="text/html" id="hrJobTmpl">
+    <li class="draggable" data-comp="{{:comp}}" data-hr-jikclass="{{:hrdJikclass}}">{{>hrdClassnm}} <button class="disconnect-btn">X</button></li>
+</script>
+<!-- // 인사직무 template -->
+
+<script type="text/javascript" src="/vendors.bundle.js"></script>
+<script type="text/javascript" src="/fa_ability.draggable.bundle.js"></script>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 import { Sortable, Droppable } from '@shopify/draggable';
 
+console.log('draggable!!!');
 const droppable = new Droppable(document.querySelectorAll('.container2'), {
   draggable: '.item',
   dropzone: '.dropzone2'

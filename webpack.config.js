@@ -5,12 +5,24 @@ module.exports = (env, options) => {
 
     entry: {
       app: ['./src/app.js'],
-      draggable: ['@babel/polyfill', './src/draggable.js']
+      draggable: ['@babel/polyfill', './src/draggable.js'],
+      "fa_ability.draggable": ['@babel/polyfill', './src/nongshim/fa_ability.draggable.js'],
     },
 
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
+        }
+      }
     },
 
     module: {
@@ -32,9 +44,21 @@ module.exports = (env, options) => {
 
   if (options.mode === 'development') {
     // TODO blackpet: development settings...
+
+    config.devtool = 'inline-source-map';
+
+    // webpack-dev-server settings
     config.devServer = {
+      contentBase: path.join(__dirname),
       host: '0.0.0.0',
-      port: 4000
+      port: 4000,
+      hot: true,
+      // open: true,
+      proxy: {
+        '/admin': {
+          target: 'http://localhost:8080'
+        }
+      }
     }
   } else {
     // TODO blackpet: production settings...
