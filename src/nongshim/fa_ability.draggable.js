@@ -122,13 +122,8 @@ const evt = {
       return;
     }
 
-    const newJob = {
-      eduJikclass: Math.floor(Math.random() * 100) + 1, // 1 to 1000
-      eduClassnm: newJobNm
-    };
-
     // 신규 교육직무 추가
-    appendEduJob(newJob);
+    appendEduJob(newJobNm);
   },
 
   /**
@@ -180,20 +175,26 @@ const bindEvents = () => {
 
 /**
  * 신규 교육직무 추가
- * add to [data, dom element, DB]
- * @param job
+ * add to [DB, data, dom element]
+ * @param jobNm
  */
-const appendEduJob = (job) => {
-  console.log('appendEduJob', job); // TODO debug log
+const appendEduJob = async (jobNm) => {
+  console.log('appendEduJob', jobNm); // TODO debug log
+
+  // store to DB
+  const jobCd = await service.insertEduJob(jobNm);
+
+  const job = {
+    eduJikclass: jobCd,
+    eduClassnm: jobNm
+  };
 
   // append to data
   eduJobList.push(job);
 
-  console.log(eduJobList); // TODO debug log
-
   // append to dom element
   const tmpl = $.templates('#eduJobTmpl');
-  $('tbody#eduJobList').append(tmpl.render(job));
+  $('tbody#eduJobList').append(tmpl.render(jobNm));
 
   // apply drag&drop!!
   sortable.addContainer($('tbody#eduJobList tr:last-child ul.sortable')[0]);
