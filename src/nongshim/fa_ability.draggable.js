@@ -3,7 +3,23 @@ import * as _ from 'lodash';
 import * as $ from 'jquery';
 require('jsrender')($); // load JsRender as jQuery plugin
 
-
+/**
+ * fetch to POST
+ * @param url
+ * @param data
+ * @returns {Promise<any>}
+ */
+const postData = (url = '', data = {}) => {
+  return fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(res => res.json());
+};
 /**
  * service
  * @type
@@ -31,43 +47,39 @@ const service = {
 
   // 교육직무 등록
   insertEduJob: async (eduJobNm) => {
-    const param = {
-      p_eduClassnm: eduJobNm
+    const data = {
+      eduClassnm: eduJobNm
     };
-    const res = await fetch('/admin/ability/jobmapping/insertEduJob.do', param);
-    return await res.json();
+    return await postData('/admin/ability/jobmapping/insertEduJob.do', data);
   },
 
   // 교육직무 삭제
   deleteEduJob: async (eduJobId) => {
-    const param = {
-      p_eduJikclass: eduJobId
+    const data = {
+      eduJikclass: eduJobId
     };
-    const res = await fetch('/admin/ability/jobmapping/deleteEduJob.do', param);
-    return await res.json();
+    return await postData('/admin/ability/jobmapping/deleteEduJob.do', data);
   },
 
   // 교육-인사직무 매핑
   mapEduHrJob: async (eduJobId, hrCompCd, hrJobId) => {
-    const param = {
-      p_eduJikclass: eduJobId,
-      p_comp: hrCompCd,
-      p_hrdJikclass: hrJobId
+    const data = {
+      eduJikclass: eduJobId,
+      comp: hrCompCd,
+      hrdJikclass: hrJobId
     };
-    const res = await fetch('/admin/ability/jobmapping/insertEduHrJobMapping.do', param);
-    return await res.json();
+    return await postData('/admin/ability/jobmapping/insertEduHrJobMapping.do', data);
   },
 
 
   // 교육-인사직무 매핑 제거
   disconnectEduHrJob: async (eduJobId, hrCompCd, hrJobId) => {
-    const param = {
-      p_eduJikclass: eduJobId,
-      p_comp: hrCompCd,
-      p_hrdJikclass: hrJobId
+    const data = {
+      eduJikclass: eduJobId,
+      comp: hrCompCd,
+      hrdJikclass: hrJobId
     };
-    const res = await fetch('/admin/ability/jobmapping/deleteEduHrJobMapping.do', param);
-    return await res.json();
+    return await postData('/admin/ability/jobmapping/deleteEduHrJobMapping.do', data);
   },
 
 }
@@ -182,10 +194,10 @@ const appendEduJob = async (jobNm) => {
   console.log('appendEduJob', jobNm); // TODO debug log
 
   // store to DB
-  const jobCd = await service.insertEduJob(jobNm);
+  const res = await service.insertEduJob(jobNm);
 
   const job = {
-    eduJikclass: jobCd,
+    eduJikclass: res.eduJikclass,
     eduClassnm: jobNm
   };
 
@@ -194,7 +206,7 @@ const appendEduJob = async (jobNm) => {
 
   // append to dom element
   const tmpl = $.templates('#eduJobTmpl');
-  $('tbody#eduJobList').append(tmpl.render(jobNm));
+  $('tbody#eduJobList').append(tmpl.render(job));
 
   // apply drag&drop!!
   sortable.addContainer($('tbody#eduJobList tr:last-child ul.sortable')[0]);
