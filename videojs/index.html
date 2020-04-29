@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom for video.js</title>
+</head>
+<body>
+
+<video id="my-video" class="video-js vjs-theme-fantasy"
+       width="640"
+       height="264"
+>
+    <!--    <source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegurl">-->
+<!--        <source src="https://www.radiantmediaplayer.com/media/bbb-360p.mp4">-->
+        <source src="//www.youtube.com/watch?v=1rJwOwOhbEE" type="video/youtube">
+<!--    <source src="http://172.25.1.74/2020/dw/01_lecture.mp4">-->
+    <p class="vjs-no-js">
+        please enable Javascript.
+    </p>
+</video>
+
+<script type="text/javascript" src="/vendors.bundle.js"></script>
+<script type="text/javascript" src="/bpf.video.bundle.js"></script>
+
+<style type="text/css">
+    .vjs-playback-rate > .vjs-menu-button, .vjs-playback-rate .vjs-playback-rate-value {
+        top: 12px;
+    }
+</style>
+</body>
+</html>

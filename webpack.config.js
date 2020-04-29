@@ -6,7 +6,9 @@ module.exports = (env, options) => {
     entry: {
       app: ['./src/app.js'],
       draggable: ['@babel/polyfill', './src/draggable.js'],
-      "fa_ability.draggable": ['@babel/polyfill', './src/nongshim/fa_ability.draggable.js'],
+      'fa_ability.draggable': ['@babel/polyfill', './src/nongshim/fa_ability.draggable.js'],
+      'bpf.poppy-1.1': ['@babel/polyfill', './src/bpf/bpf.poppy-1.1.js'],
+      'bpf.video': ['@babel/polyfill', './src/bpf/bpf.video.js'],
     },
 
     output: {
@@ -36,10 +38,18 @@ module.exports = (env, options) => {
               plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-transform-arrow-functions']
             }
           }
+        },
 
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader']
         }
       ]
-    }
+    },
+
+    externals: {
+      videojs: 'video.js'
+    },
   };
 
   if (options.mode === 'development') {
