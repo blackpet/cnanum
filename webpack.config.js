@@ -68,7 +68,7 @@ module.exports = (env, options) => {
         '/admin': {
           target: 'http://localhost:8080'
         }
-      }
+      },
     }
   } else {
     // TODO blackpet: production settings...

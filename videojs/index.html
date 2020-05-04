@@ -7,12 +7,11 @@
 <body>
 
 <video id="my-video" class="video-js vjs-theme-fantasy"
-       width="640"
-       height="264"
+       data-subj="1001" data-subjseq="5"
 >
-    <!--    <source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegurl">-->
-<!--        <source src="https://www.radiantmediaplayer.com/media/bbb-360p.mp4">-->
-        <source src="//www.youtube.com/watch?v=1rJwOwOhbEE" type="video/youtube">
+<!--        <source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegurl">-->
+<!--        <source src="https://www.radiantmediaplayer.com/media/bbb-360p.mp4" type="video/mp4">-->
+        <source src="https://www.youtube.com/watch?v=ahaosybofjs" type="video/youtube">
 <!--    <source src="http://172.25.1.74/2020/dw/01_lecture.mp4">-->
     <p class="vjs-no-js">
         please enable Javascript.
@@ -23,9 +22,10 @@
 <script type="text/javascript" src="/bpf.video.bundle.js"></script>
 
 <style type="text/css">
-    .vjs-playback-rate > .vjs-menu-button, .vjs-playback-rate .vjs-playback-rate-value {
-        top: 12px;
-    }
+    /** overwrite video-js css **/
+    .vjs-playback-rate > .vjs-menu-button, .vjs-playback-rate .vjs-playback-rate-value {top: 12px;}
+    .video-js .vjs-current-time, .vjs-no-flex .vjs-current-time {display: block;}
+    .vjs-theme-fantasy .vjs-remaining-time {display: block;}
 </style>
 </body>
 </html>
