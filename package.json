@@ -27,7 +27,7 @@
     "@videojs/themes": "^1.0.0",
     "jquery": "^3.5.0",
     "jsrender": "^1.0.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "video.js": "^7.7.5",
     "videojs-youtube": "^2.6.1"
   },
